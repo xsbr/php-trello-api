@@ -147,7 +147,7 @@ class HttpClient implements HttpClientInterface
         try {
             $response = $this->client->send($request);
         } catch (\LogicException $e) {
-            throw new ErrorException($e->getMessage(), $e->getCode(), $e);
+            throw new ErrorException($e->getMessage(), $e->getCode());
         } catch (\RuntimeException $e) {
             throw new RuntimeException($e->getMessage(), $e->getCode(), $e);
         }

@@ -142,6 +142,13 @@ class Checklist extends AbstractObject implements ChecklistInterface
         return $this->data['checkItems'];
     }
 
+    public function cleanItems()
+    {
+        foreach($this->data['checkItems'] as $key => $data) {
+            unset($this->data['checkItems'][$key]['creationMethod']);
+        }
+    }
+
     /**
      * {@inheritdoc}
      * @param string $nameOrId
@@ -242,7 +249,7 @@ class Checklist extends AbstractObject implements ChecklistInterface
     protected function postRefresh()
     {
         foreach ($this->data['checkItems'] as $key => $item) {
-            $this->data['checkItems'][$key]['state'] = in_array($item['state'], array(true, 'complete', 'true'));
+            $this->data['checkItems'][$key]['state'] = in_array($item['state'], array(true, 'complete', 'true'), true);
         }
     }
 
